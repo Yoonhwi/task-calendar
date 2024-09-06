@@ -1,0 +1,18 @@
+.ant-picker-calendar-date-value {
+  text-align: start;
+}
+
+.ant-picker-content > thead > tr > th {
+  text-align: start;
+  padding-left: 12px !important;
+}
+
+.ant-picker-content > thead > tr > th:nth-child(1),
+.ant-picker-content > thead > tr > th:nth-child(7) {
+  color: red;
+}
+
+.ant-picker-content > tbody > tr > td.ant-picker-cell-in-view:nth-child(1),
+.ant-picker-content > tbody > tr > td.ant-picker-cell-in-view:nth-child(7) {
+  color: red;
+}
