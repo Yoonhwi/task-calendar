@@ -1,1 +1,3 @@
-export { default as Calendar } from "./calender/calendar";
+export * from "./calender";
+export * from "./modal";
+export * from "./task";

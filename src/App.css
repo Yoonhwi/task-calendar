@@ -16,3 +16,12 @@
 .ant-picker-content > tbody > tr > td.ant-picker-cell-in-view:nth-child(7) {
   color: red;
 }
+
+.ant-modal-content {
+  padding: 0px !important;
+  border-radius: 0px !important;
+}
+
+.ant-list-header {
+  padding: 0px !important;
+}
