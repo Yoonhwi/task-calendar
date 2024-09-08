@@ -1,6 +1,5 @@
 import { TaskType } from "@/types";
-import { createContext, ReactNode } from "react";
-import { useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 
 interface CalendarContextInterface {
   currentDate: string | null;
@@ -25,19 +24,19 @@ const allEvents: TaskType[] = [
   {
     id: 2,
     date: "2024-09-15",
-    content: "휴가",
+    content: "Learn MSW for mocking",
     status: "todo",
   },
   {
     id: 3,
     date: "2024-09-15",
-    content: "test",
-    status: "todo",
+    content: "have a breakfast with hobbin",
+    status: "done",
   },
   {
     id: 4,
     date: "2024-09-15",
-    content: "test",
+    content: "한국말 테스트 DONE",
     status: "done",
   },
 ];
@@ -56,7 +55,6 @@ export const CalendarContextProvider = ({
 }) => {
   const [currentDate, setCurrentDate] = useState<string | null>(null);
   const currentEvents = allEvents.filter((event) => event.date === currentDate);
-
   const value = { currentDate, setCurrentDate, allEvents, currentEvents };
 
   return (

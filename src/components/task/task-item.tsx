@@ -13,7 +13,7 @@ const TaskItem = ({ event }: { event: TaskType }) => {
         border: "2px solid var(--color-gray)",
         borderRadius: "4px",
         maxWidth: "100%",
-        padding: "8px",
+        padding: "4px 12px",
       }}
       gap={"8px"}
       align="center"
@@ -21,12 +21,14 @@ const TaskItem = ({ event }: { event: TaskType }) => {
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
     >
-      <Flex gap={"8px"} align="center">
+      <Flex gap={"12px"} align="center">
         {event.status === "todo" && (
           <IconCheck bgColor="var(--color-dark-gray)" />
         )}
         {event.status === "done" && <IconCheck bgColor="var(--color-green)" />}
-        <span>{event.content}</span>
+        <span style={{ fontSize: "14px", fontWeight: 600 }}>
+          {event.content}
+        </span>
       </Flex>
       <Flex gap={"8px"} align="center">
         <Switch
