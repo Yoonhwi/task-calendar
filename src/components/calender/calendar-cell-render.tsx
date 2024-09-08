@@ -1,5 +1,5 @@
 import { CalendarContext } from "@/providers";
-import { Flex } from "antd";
+import { Badge, Flex } from "antd";
 import { Dayjs } from "dayjs";
 import type { CellRenderInfo } from "rc-picker/lib/interface";
 import { useContext } from "react";
@@ -14,17 +14,22 @@ const CellRender = ({ current, info }: CellRenderProps) => {
   if (info.type === "date") {
     const date = current.format("YYYY-MM-DD");
     const currentEvents = allEvents.filter((event) => event.date === date);
+    const done = currentEvents.filter((event) => event.status === "done");
+    const todo = currentEvents.filter((event) => event.status === "todo");
 
     return (
-      <ul style={{ listStyle: "none", padding: 0 }}>
-        {currentEvents.map((event, index) => (
-          <li key={index}>
-            <Flex gap={4}>
-              <span>{event.content}</span>
-            </Flex>
-          </li>
-        ))}
-      </ul>
+      <Flex vertical>
+        <Flex gap={"4px"}>
+          {todo.map((_, i) => {
+            return <Badge key={`badge_${i}`} color={"volcano"} />;
+          })}
+        </Flex>
+        <Flex gap={"4px"}>
+          {done.map((_, i) => {
+            return <Badge key={`badge_${i}`} color={"green"} />;
+          })}
+        </Flex>
+      </Flex>
     );
   }
   return info.originNode;

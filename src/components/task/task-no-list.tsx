@@ -1,9 +1,9 @@
-import { Flex } from "antd";
+import { Empty, Flex } from "antd";
 
 const TaskNoList = () => {
   return (
-    <Flex justify="center" align="center" style={{ height: "120px" }}>
-      <span>No task for today</span>
+    <Flex justify="center" align="center" style={{ height: "160px" }}>
+      <Empty description={<span>일정이 없습니다!</span>} />
     </Flex>
   );
 };

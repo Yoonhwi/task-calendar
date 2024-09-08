@@ -34,6 +34,12 @@ const allEvents: TaskType[] = [
     content: "test",
     status: "todo",
   },
+  {
+    id: 4,
+    date: "2024-09-15",
+    content: "test",
+    status: "done",
+  },
 ];
 
 export const CalendarContext = createContext<CalendarContextInterface>({

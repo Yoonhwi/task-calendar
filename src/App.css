@@ -1,3 +1,10 @@
+:root {
+  --color-gray: #efefef;
+  --color-dark-gray: #b6ada8;
+  --color-blue: #1677ff;
+  --color-green: #38ad71;
+}
+
 .ant-picker-calendar-date-value {
   text-align: start;
 }

@@ -1,12 +1,14 @@
-import { Flex, Input } from "antd";
+import { Button, Flex, Input } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 const TaskInput = () => {
   return (
     <Flex
       style={{
-        backgroundColor: "#efefef",
+        backgroundColor: "var(--color-gray)",
         height: "60px",
         padding: "0 16px",
+        position: "relative",
       }}
       gap="small"
       justify="end"
@@ -17,7 +19,18 @@ const TaskInput = () => {
         style={{
           borderRadius: "24px",
           height: "40px",
-          border: "1px solid #326db6",
+          border: "1px solid var(--color-blue)",
+        }}
+      />
+      <Button
+        type="primary"
+        shape="circle"
+        icon={<PlusOutlined />}
+        style={{
+          position: "absolute",
+          right: "20px",
+          top: "50%",
+          transform: "translateY(-50%)",
         }}
       />
     </Flex>

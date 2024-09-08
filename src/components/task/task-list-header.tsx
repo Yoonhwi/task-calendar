@@ -1,6 +1,7 @@
 import { CalendarContext } from "@/providers";
 import { Flex } from "antd";
 import { useContext } from "react";
+import "@/App.css";
 
 const TaskListHeader = () => {
   const { currentEvents } = useContext(CalendarContext);
@@ -10,7 +11,7 @@ const TaskListHeader = () => {
   return (
     <Flex
       style={{
-        backgroundColor: "#efefef",
+        backgroundColor: "var(--color-gray)",
         height: "50px",
         padding: "0 16px",
       }}
@@ -21,7 +22,7 @@ const TaskListHeader = () => {
       <Flex
         style={{
           borderRadius: "20px",
-          backgroundColor: "#326db6",
+          backgroundColor: "var(--color-blue)",
           color: "white",
           gap: "4px",
           padding: "2px",
@@ -45,7 +46,7 @@ const TaskListHeader = () => {
       <Flex
         style={{
           borderRadius: "20px",
-          backgroundColor: "#326db6",
+          backgroundColor: "var(--color-blue)",
           color: "white",
           gap: "4px",
           padding: "2px",
