@@ -1,9 +1,13 @@
 # React + Ant-Design Calendar
 
 Ant Design에서 제공해주는 Calendar를 이용해 여러 가지 기능을 추가했습니다.
+
 셀별로 해당 날짜의 tasks를 todo와 done 두 종류로 Badge를 이용해 간단하게 보여줍니다.
+
 마우스 이동에 따라 왼쪽 하단 Preview에서 해당 날짜의 tasks를 보여줍니다.
+
 원하는 날짜의 셀을 클릭하면 모달을 통해 task 추가/제거와, status를 변경할 수 있습니다.
+
 DB는 localStorage로 사용했으며, MSW를 이용한 API mocking을 통해 실제 서버와의 네트워크 통신을 시뮬레이션했습니다.
 
 ## Getting Started
