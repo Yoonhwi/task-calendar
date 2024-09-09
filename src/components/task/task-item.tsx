@@ -1,11 +1,30 @@
+import { deleteTask, updateTask } from "@/mocks";
 import { TaskType } from "@/types";
-import { Button, Flex, Switch } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
-import { useState } from "react";
+import { Button, Flex, Switch } from "antd";
+import { useCallback, useContext, useState } from "react";
 import IconCheck from "./task-item-icon-check";
+import { CalendarContext } from "@/providers";
 
 const TaskItem = ({ event }: { event: TaskType }) => {
   const [isHover, setIsHover] = useState(false);
+  const { updateDB } = useContext(CalendarContext);
+
+  const handleChangeStatus = useCallback(
+    async (checked: boolean) => {
+      await updateTask({ ...event, status: checked ? "done" : "todo" });
+      updateDB();
+    },
+    [event, updateDB]
+  );
+
+  const handleDeleteBtn = useCallback(
+    async (id: string) => {
+      await deleteTask({ id });
+      updateDB();
+    },
+    [updateDB]
+  );
 
   return (
     <Flex
@@ -34,16 +53,14 @@ const TaskItem = ({ event }: { event: TaskType }) => {
         <Switch
           style={{ opacity: isHover ? 1 : 0, transition: "opacity 0.3s ease" }}
           checked={event.status === "done"}
-          onChange={(checked) => {
-            console.log(checked);
-            //checked ? event.status === "done" : "todo"; 변경
-          }}
+          onChange={(checked) => handleChangeStatus(checked)}
         />
         <Button
           type="text"
           shape="circle"
           icon={<DeleteOutlined />}
           style={{ opacity: isHover ? 1 : 0, transition: "opacity 0.3s ease" }}
+          onClick={() => handleDeleteBtn(event.id)}
         />
       </Flex>
     </Flex>

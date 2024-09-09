@@ -4,14 +4,10 @@ import { useContext } from "react";
 import TaskInput from "./task-input";
 import TaskItem from "./task-item";
 import TaskListHeader from "./task-list-header";
-import TaskNoList from "./task-no-list";
-import { getTasks } from "@/mocks";
+import { TaskNoList } from "@/components";
 
 const TaskList = () => {
   const { currentEvents } = useContext(CalendarContext);
-  getTasks()
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
 
   return (
     <Flex vertical={true}>

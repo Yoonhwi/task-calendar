@@ -1,25 +1,42 @@
 import { CalendarContext } from "@/providers";
+import { TaskType } from "@/types";
+import { isEqual } from "@/utils";
 import { Badge, Flex } from "antd";
 import { Dayjs } from "dayjs";
 import type { CellRenderInfo } from "rc-picker/lib/interface";
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 interface CellRenderProps {
   current: Dayjs;
   info: CellRenderInfo<Dayjs>;
 }
 
 const CellRender = ({ current, info }: CellRenderProps) => {
-  const { allEvents } = useContext(CalendarContext);
+  const { allEvents, setHoverEvents } = useContext(CalendarContext);
+
+  const handleCellHover = useCallback(
+    (events: TaskType[]) => {
+      setHoverEvents(events);
+    },
+    [setHoverEvents]
+  );
+
+  const handleCellLeave = useCallback(() => {
+    setHoverEvents([]);
+  }, [setHoverEvents]);
 
   if (info.type === "date") {
-    const date = current.format("YYYY-MM-DD");
-    const currentEvents = allEvents.filter((event) => event.date === date);
+    const currentEvents = allEvents.filter((event) => isEqual(event, current));
     const done = currentEvents.filter((event) => event.status === "done");
     const todo = currentEvents.filter((event) => event.status === "todo");
 
     return (
-      <Flex vertical>
-        <Flex gap={"4px"}>
+      <Flex
+        vertical
+        style={{ height: "100%" }}
+        onMouseEnter={() => handleCellHover(currentEvents)}
+        onMouseLeave={() => handleCellLeave}
+      >
+        <Flex gap={"4px"} wrap>
           {todo.map((_, i) => {
             return <Badge key={`badge_${i}`} color={"volcano"} />;
           })}
@@ -32,6 +49,7 @@ const CellRender = ({ current, info }: CellRenderProps) => {
       </Flex>
     );
   }
+
   return info.originNode;
 };
 

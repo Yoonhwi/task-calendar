@@ -4,14 +4,32 @@
   --color-blue: #1677ff;
   --color-green: #38ad71;
 }
-
+body {
+  margin: 0;
+}
 .ant-picker-calendar-date-value {
   text-align: start;
 }
 
-.ant-picker-content > thead > tr > th {
-  text-align: start;
+.big-calendar-weekdays table > thead > tr > th {
   padding-left: 12px !important;
+  text-align: start;
+}
+
+.big-calendar-weekdays > .ant-picker-calendar-header {
+  padding: 12px;
+}
+
+.small-calendar-weekdays table > thead > tr > th {
+  text-align: start;
+  padding: 4px !important;
+}
+
+.small-calendar-weekdays table > tbody > tr > td > div {
+  display: flex !important;
+  width: fit-content;
+  justify-content: center;
+  align-items: center;
 }
 
 .ant-picker-content > thead > tr > th:nth-child(1),
@@ -24,6 +42,10 @@
   color: red;
 }
 
+.ant-picker-calendar.ant-picker-calendar-full .ant-picker-calendar-date-today {
+  border-top: 2px solid rgba(5, 5, 5, 0.06);
+}
+
 .ant-modal-content {
   padding: 0px !important;
   border-radius: 0px !important;
@@ -31,4 +53,23 @@
 
 .ant-list-header {
   padding: 0px !important;
+}
+
+.ant-picker-panel {
+  flex: 1;
+  display: flex !important;
+}
+
+.ant-picker-date-panel {
+  flex: 1;
+  display: flex !important;
+}
+
+.ant-picker-body {
+  flex: 1;
+  display: flex !important;
+}
+
+.ant-picker-content {
+  flex: 1;
 }

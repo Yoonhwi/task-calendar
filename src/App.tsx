@@ -1,13 +1,15 @@
-import "./App.css";
 import { Calendar, Modal } from "@/components";
 import { CalendarContextProvider, ModalContextProvider } from "@/providers";
+import CalendarLayout from "./layouts/calendar-layout";
 
 function App() {
   return (
     <ModalContextProvider>
       <CalendarContextProvider>
         <Modal />
-        <Calendar />
+        <CalendarLayout>
+          <Calendar />
+        </CalendarLayout>
       </CalendarContextProvider>
     </ModalContextProvider>
   );
