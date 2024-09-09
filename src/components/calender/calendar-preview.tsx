@@ -54,7 +54,7 @@ const CalendarPreview = () => {
             height: "100%",
           }}
         >
-          <TaskNoList />
+          <TaskNoList text="일정이 없습니다!" />
         </Flex>
       )}
     </Flex>

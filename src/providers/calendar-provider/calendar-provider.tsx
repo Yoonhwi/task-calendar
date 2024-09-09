@@ -1,5 +1,5 @@
 import { getTasks } from "@/mocks";
-import { TaskType } from "@/types";
+import { TaskType, ViewMode } from "@/types";
 import { isEqual } from "@/utils";
 import dayjs from "dayjs";
 import {
@@ -19,6 +19,9 @@ interface CalendarContextInterface {
   setCurrentDate: React.Dispatch<React.SetStateAction<dayjs.Dayjs>>;
   hoverEvents: TaskType[];
   setHoverEvents: React.Dispatch<React.SetStateAction<TaskType[]>>;
+  tasksByStatus: TaskType[];
+  setTaskViewMode: React.Dispatch<React.SetStateAction<ViewMode>>;
+  taskViewMode: ViewMode;
 }
 
 export const CalendarContext = createContext<CalendarContextInterface>({
@@ -29,6 +32,9 @@ export const CalendarContext = createContext<CalendarContextInterface>({
   setCurrentDate: () => null,
   hoverEvents: [],
   setHoverEvents: () => null,
+  tasksByStatus: [],
+  setTaskViewMode: () => null,
+  taskViewMode: "all",
 });
 
 export const CalendarContextProvider = ({
@@ -36,6 +42,7 @@ export const CalendarContextProvider = ({
 }: {
   children: ReactNode;
 }) => {
+  const [taskViewMode, setTaskViewMode] = useState<ViewMode>("all");
   const [hoverEvents, setHoverEvents] = useState<TaskType[]>([]);
   const [allEvents, setAllEvents] = useState<TaskType[]>([]);
   const [currentDate, setCurrentDate] = useState<dayjs.Dayjs>(dayjs());
@@ -52,6 +59,11 @@ export const CalendarContextProvider = ({
     setFirstRender(true);
   }, []);
 
+  const tasksByStatus = useMemo(() => {
+    if (taskViewMode === "all") return currentEvents;
+    return currentEvents.filter((event) => event.status === taskViewMode);
+  }, [currentEvents, taskViewMode]);
+
   const value = useMemo(() => {
     return {
       currentDate,
@@ -61,8 +73,19 @@ export const CalendarContextProvider = ({
       updateDB,
       hoverEvents,
       setHoverEvents,
+      tasksByStatus,
+      setTaskViewMode,
+      taskViewMode,
     };
-  }, [allEvents, currentDate, currentEvents, hoverEvents, updateDB]);
+  }, [
+    allEvents,
+    currentDate,
+    currentEvents,
+    hoverEvents,
+    tasksByStatus,
+    updateDB,
+    taskViewMode,
+  ]);
 
   useEffect(() => {
     if (firstRender) return;

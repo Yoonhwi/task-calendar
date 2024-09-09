@@ -4,3 +4,5 @@ export interface TaskType {
   content: string;
   status: "todo" | "done";
 }
+
+export type ViewMode = "all" | "todo" | "done";

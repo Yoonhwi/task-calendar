@@ -7,7 +7,7 @@ interface PostTask {
   date: string;
 }
 
-const baseUrl = `http://localhost:5173/task-calendar`;
+const baseUrl = `${window.location.origin}/task-calendar`;
 
 export const getUrl = (route: string) => {
   return `${baseUrl}${route}`;
